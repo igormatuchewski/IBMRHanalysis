@@ -1,2 +1,2 @@
 plotly==5.3.1
-plotly-express==0.5.0
+plotly-express
