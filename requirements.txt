@@ -1,2 +1,6 @@
-plotly==5.3.1
-plotly_express
+pandas
+plotly
+streamlit
+yfinance
+pandas-datareader
+prophet
