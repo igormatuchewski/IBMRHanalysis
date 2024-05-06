@@ -1,7 +1,7 @@
 # Importing libs
 import pandas as pd
-import streamlit as st
 import plotly_express as px
+import streamlit as st
 
 #  Configuring Streamlit page options
 st.set_page_config(
@@ -22,7 +22,16 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
-df_ibm = st.session_state['dtset']
+# Reading dataset
+# Checking if 'dtset' is not in session_state or if it is not a Dataframe
+if 'dtset' not in st.session_state or not isinstance(st.session_state['dtset'], pd.DataFrame):
+    # Carrega o DataFrame a partir do arquivo CSV
+    df_ibm = pd.read_csv('dataset/df_ibm.csv')
+    # Storing the Dataframe in session_state for later use
+    st.session_state['dtset'] = df_ibm
+else:
+    # If 'dtset' already is in session_state and is a valid Dataframe, just retrieve it
+    df_ibm = st.session_state['dtset']
 
 ## Sidebar content
 # Status filter
@@ -121,11 +130,11 @@ unsEmpxBuss = df_filtered.groupby('BusinessTravel')['Unsatisfied'].count().sort_
 #### Graphics
 ### _____Personal
 # Employees x Unsatisfied
-# colors = ['#ed2ad6' if gender == 'Female' else '#4287f5' for gender in unsEmpXgend.index]
-# empXuns_graph = px.bar(emp_count, x='Unsatisfied', y='Count', title='Count of Employees | Status', text_auto=True, color_discrete_sequence=['#FE596A'], labels={
-#     'Unsatisfied' : 'Status'
-# })
-# empXuns_graph.update_traces(textfont=dict(size=12, color='white'))
+colors = ['#ed2ad6' if gender == 'Female' else '#4287f5' for gender in unsEmpXgend.index]
+empXuns_graph = px.bar(emp_count, x='Unsatisfied', y='Count', title='Count of Employees | Status', text_auto=True, color_discrete_sequence=['#FE596A'], labels={
+    'Unsatisfied' : 'Status'
+})
+empXuns_graph.update_traces(textfont=dict(size=12, color='white'))
 # Unsatisfied Employees x Gender
 total = unsEmpXgend.sum()
 percentages = (unsEmpXgend / total) * 100
@@ -278,7 +287,7 @@ unsEmpxBuss_graph.update_yaxes(range=[0, unsEmpxBuss.values.max() * 1.1])
 ## Plotting Graphs
 # Defining columns
 st.markdown('# __General')
-# st.plotly_chart(empXuns_graph, use_container_width=True)
+st.plotly_chart(empXuns_graph, use_container_width=True)
 st.markdown('## __Personal Informations')
 col1, col2, col3 = st.columns(3)
 col1.plotly_chart(unsEmpXgend_graph, use_container_width=True)

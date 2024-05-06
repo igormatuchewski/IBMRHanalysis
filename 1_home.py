@@ -22,16 +22,7 @@ st.markdown("""
         </style>
         """, unsafe_allow_html=True)
 
-# Reading dataset
-# Checking if 'dtset' is not in session_state or if it is not a Dataframe
-if 'dtset' not in st.session_state or not isinstance(st.session_state['dtset'], pd.DataFrame):
-    # Carrega o DataFrame a partir do arquivo CSV
-    df_ibm = pd.read_csv('dataset/df_ibm.csv')
-    # Storing the Dataframe in session_state for later use
-    st.session_state['dtset'] = df_ibm
-else:
-    # If 'dtset' already is in session_state and is a valid Dataframe, just retrieve it
-    df_ibm = st.session_state['dtset']
+
 
 st.sidebar.markdown('Made by [Igor Matuchewski](https://www.linkedin.com/in/igor-matuchewski)')
 st.sidebar.markdown('Click [here to see my Portfolio](https://sites.google.com/view/igormatuchewski/home)')
