@@ -1,6 +1,5 @@
 # Importing libs
 import pandas as pd
-import plotly_express as px
 import streamlit as st
 
 #  Configuring Streamlit page options

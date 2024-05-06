@@ -1,7 +1,7 @@
 # Importing libs
 import pandas as pd
-import plotly_express as px
 import streamlit as st
+import plotly_express as px
 
 #  Configuring Streamlit page options
 st.set_page_config(
