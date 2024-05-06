@@ -121,11 +121,11 @@ unsEmpxBuss = df_filtered.groupby('BusinessTravel')['Unsatisfied'].count().sort_
 #### Graphics
 ### _____Personal
 # Employees x Unsatisfied
-colors = ['#ed2ad6' if gender == 'Female' else '#4287f5' for gender in unsEmpXgend.index]
-empXuns_graph = px.bar(emp_count, x='Unsatisfied', y='Count', title='Count of Employees | Status', text_auto=True, color_discrete_sequence=['#FE596A'], labels={
-    'Unsatisfied' : 'Status'
-})
-empXuns_graph.update_traces(textfont=dict(size=12, color='white'))
+# colors = ['#ed2ad6' if gender == 'Female' else '#4287f5' for gender in unsEmpXgend.index]
+# empXuns_graph = px.bar(emp_count, x='Unsatisfied', y='Count', title='Count of Employees | Status', text_auto=True, color_discrete_sequence=['#FE596A'], labels={
+#     'Unsatisfied' : 'Status'
+# })
+# empXuns_graph.update_traces(textfont=dict(size=12, color='white'))
 # Unsatisfied Employees x Gender
 total = unsEmpXgend.sum()
 percentages = (unsEmpXgend / total) * 100
@@ -278,7 +278,7 @@ unsEmpxBuss_graph.update_yaxes(range=[0, unsEmpxBuss.values.max() * 1.1])
 ## Plotting Graphs
 # Defining columns
 st.markdown('# __General')
-st.plotly_chart(empXuns_graph, use_container_width=True)
+# st.plotly_chart(empXuns_graph, use_container_width=True)
 st.markdown('## __Personal Informations')
 col1, col2, col3 = st.columns(3)
 col1.plotly_chart(unsEmpXgend_graph, use_container_width=True)
